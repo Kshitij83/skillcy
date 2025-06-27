@@ -37,3 +37,4 @@ coverage/
 *.tsbuildinfo
 # Shadcn UI
 components.json
+src/integrations/supabase/client.ts
