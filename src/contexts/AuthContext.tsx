@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
@@ -10,6 +9,7 @@ interface AuthContextType {
   signUp: (email: string, password: string, fullName: string) => Promise<{ error: any }>;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -58,6 +58,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
       }
     });
+    if (error && error.message && error.message.toLowerCase().includes("user already registered")) {
+      return { error: { ...error, message: "An account with this email already exists." } };
+    }
     return { error };
   };
 
@@ -73,6 +76,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     await supabase.auth.signOut();
   };
 
+  const signInWithGoogle = async () => {
+    await supabase.auth.signInWithOAuth({ provider: 'google' });
+  };
+
+  // Ensure Google user is in profiles table
+  React.useEffect(() => {
+    const upsertGoogleProfile = async () => {
+      if (user && user.email) {
+        const { data: existing } = await supabase
+          .from('profiles')
+          .select('id')
+          .eq('user_id', user.id)
+          .single();
+
+        if (!existing) {
+          await supabase.from('profiles').insert([
+            {
+              user_id: user.id,
+              full_name: user.user_metadata?.full_name || user.email,
+              avatar_url: user.user_metadata?.avatar_url || null,
+            }
+          ]);
+        }
+      }
+    };
+    upsertGoogleProfile();
+  }, [user]);
+
   const value = {
     user,
     session,
@@ -80,6 +111,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     signUp,
     signIn,
     signOut,
+    signInWithGoogle,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

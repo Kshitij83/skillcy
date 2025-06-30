@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +12,7 @@ export const Auth: React.FC = () => {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [loading, setLoading] = useState(false);
-  const { user, signUp, signIn } = useAuth();
+  const { user, signUp, signIn, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,6 +51,15 @@ export const Auth: React.FC = () => {
         description: "An unexpected error occurred",
         variant: "destructive",
       });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogle = async () => {
+    setLoading(true);
+    try {
+      await signInWithGoogle();
     } finally {
       setLoading(false);
     }
@@ -104,7 +112,18 @@ export const Auth: React.FC = () => {
               {loading ? 'Loading...' : (isSignUp ? 'Create Account' : 'Sign In')}
             </Button>
           </form>
-          
+          <div className="mt-4">
+            <Button
+              type="button"
+              className="w-full flex items-center justify-center gap-2 bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700"
+              onClick={handleGoogle}
+              disabled={loading}
+            >
+              {/* Use a generic icon or your own Google SVG here */}
+              <span className="font-semibold">G</span>
+              Continue with Google
+            </Button>
+          </div>
           <div className="mt-4 text-center">
             <button
               type="button"
