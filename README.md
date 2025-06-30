@@ -16,6 +16,19 @@ Skillcy is a modern, open-source LMS (Learning Management System) built with Rea
 
 ---
 
+## Tech Stack
+
+- **Frontend:** [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/)
+- **UI:** [Tailwind CSS](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/) (headless UI components built on [Radix UI](https://www.radix-ui.com/)), [Radix UI](https://www.radix-ui.com/) (as the underlying primitives), [Lucide Icons](https://lucide.dev/)
+- **State & Forms:** [React Hook Form](https://react-hook-form.com/), [React Context API](https://react.dev/reference/react/useContext)
+- **Backend:** [Supabase](https://supabase.com/) (Database, Auth, Storage)
+- **Data Fetching:** [@tanstack/react-query](https://tanstack.com/query/latest)
+- **Routing:** [React Router](https://reactrouter.com/)
+- **Charts:** [Recharts](https://recharts.org/)
+- **Other:** [Zod](https://zod.dev/), [date-fns](https://date-fns.org/), [clsx](https://github.com/lukeed/clsx), [Vercel](https://vercel.com/) (Deployment)
+
+---
+
 ## Features
 
 - 🚀 **Modern UI**: Built with React, shadcn/ui, and Tailwind CSS for a beautiful, responsive experience
@@ -47,16 +60,77 @@ npm install
 
 ### Environment Setup
 
-1. Edit your `config.toml` and fill in your Supabase credentials.
+1. Create a `.env` file in the root with your Supabase credentials:
+    ```
+    VITE_SUPABASE_URL=your-supabase-url
+    VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+    ```
 2. Start the development server:
 
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    ```
 
 3. Visit [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
 ## Project Structure
+
+```
+skillcy/
+├── src/
+│   ├── components/         # Reusable UI components
+│   ├── contexts/           # React context providers (e.g., Auth)
+│   ├── integrations/       # Supabase client and types
+│   ├── pages/              # Route-based pages (Home, Browse, Library, etc.)
+│   ├── App.tsx             # Main app component
+│   └── main.tsx            # Entry point
+├── public/                 # Static assets
+├── supabase/               # Supabase migrations and SQL
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+├── vite.config.ts
+└── README.md
+```
+
+---
+
+## Deployment
+
+### Deploying to Vercel
+
+1. **Push your code to GitHub/GitLab/Bitbucket.**
+2. **Go to [Vercel](https://vercel.com/) and create a new project.**
+3. **Import your repository.**
+4. **Set Environment Variables:**
+    - `VITE_SUPABASE_URL`
+    - `VITE_SUPABASE_ANON_KEY`
+5. **Vercel will auto-detect Vite and use `npm run build`.**
+6. **Click "Deploy".**
+7. **Your app will be live at `https://your-project-name.vercel.app`.**
+
+For custom domains and advanced settings, see the [Vercel documentation](https://vercel.com/docs).
+
+---
+
+## License
+
+MIT
+
+---
+
+## Contributing
+
+Pull requests and issues are welcome! Please open an issue for bugs or feature requests.
+
+---
+
+## Acknowledgements
+
+- [Supabase](https://supabase.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Vercel](https://vercel.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
