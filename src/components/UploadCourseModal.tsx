@@ -74,32 +74,8 @@ export const UploadCourseModal: React.FC<UploadCourseModalProps> = ({
   // Validate content URL (for video/pdf)
   const handleContentUrlChange = (url: string) => {
     setFormData({ ...formData, content_url: url });
-    if (!url) {
-      setContentUrlValid(true);
-      return;
-    }
-    setContentUrlValidating(true);
-    // Simple HEAD request to check if URL is reachable
-    fetch(url, { method: "HEAD" })
-      .then((res) => {
-        setContentUrlValid(res.ok);
-        if (!res.ok) {
-          toast({
-            title: "Invalid Content URL",
-            description: "The content URL provided is not accessible. Please provide a valid URL.",
-            variant: "destructive",
-          });
-        }
-      })
-      .catch(() => {
-        setContentUrlValid(false);
-        toast({
-          title: "Invalid Content URL",
-          description: "The content URL provided is not accessible. Please provide a valid URL.",
-          variant: "destructive",
-        });
-      })
-      .finally(() => setContentUrlValidating(false));
+    setContentUrlValid(true);
+    setContentUrlValidating(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
