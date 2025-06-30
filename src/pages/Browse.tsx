@@ -239,6 +239,7 @@ export const Browse: React.FC = () => {
                 src={course.image_url || DEFAULT_IMAGE_URL}
                 alt={course.title}
                 className="w-full h-48 object-cover rounded-t-lg"
+                style={{ objectFit: 'fill'}} // h-48 = 192px
               />
               <div className="absolute top-2 right-2">
                 <Badge variant={course.access_type === 'premium' ? 'secondary' : 'default'}>
@@ -248,8 +249,11 @@ export const Browse: React.FC = () => {
             </div>
             <CardHeader className="pb-2">
               <CardTitle className="text-lg line-clamp-1">{course.title}</CardTitle>
-              <CardDescription className="line-clamp-2">
-                {course.description}
+              <CardDescription
+                className="line-clamp-2 min-h-[3em]" // Reserve space for 2 lines
+                style={{ minHeight: '3em' }}
+              >
+                {course.description || <span>&nbsp;</span>}
               </CardDescription>
             </CardHeader>
             <CardContent>
