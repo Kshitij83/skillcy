@@ -58,20 +58,26 @@ cd skillcy
 npm install
 ```
 
-### Environment Setup
+### Supabase Setup
 
-1. Create a `.env` file in the root with your Supabase credentials:
+1. **Create a Supabase project** at [supabase.com](https://supabase.com/).
+2. In your Supabase dashboard, go to Project Settings → API and copy:
+    - **Project URL** (e.g., `https://your-project-id.supabase.co`)
+    - **Anon public key**
+3. Create a `.env` file in your project root:
     ```
-    VITE_SUPABASE_URL=your-supabase-url
-    VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+    VITE_SUPABASE_URL=https://your-project-id.supabase.co
+    VITE_SUPABASE_ANON_KEY=your-anon-key
     ```
-2. Start the development server:
+4. **Never commit your `.env` file** (it's already in `.gitignore`).
 
-    ```bash
-    npm run dev
-    ```
+### Running Locally
 
-3. Visit [http://localhost:5173](http://localhost:5173) in your browser.
+```bash
+npm run dev
+```
+
+Visit [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
@@ -112,6 +118,14 @@ skillcy/
 7. **Your app will be live at `https://your-project-name.vercel.app`.**
 
 For custom domains and advanced settings, see the [Vercel documentation](https://vercel.com/docs).
+
+---
+
+## Supabase Project ID in `config.toml`
+
+The `project_id` in `supabase/config.toml` is used by Supabase CLI and tools to identify your Supabase project for migrations and management.  
+It is not a secret and is safe to commit.  
+It is not a trace of "lovable" (the CLI tool you used), but rather a unique identifier for your Supabase project.
 
 ---
 
