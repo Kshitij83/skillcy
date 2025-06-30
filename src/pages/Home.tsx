@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { BookOpen, Users, Star, Rocket, Library, Award, BarChart3 } from 'lucide-react';
+import { BookOpen, Users, Star, Rocket, Library, Award, BarChart3,Mail } from 'lucide-react';
 
 export const Home: React.FC = () => {
   const { user } = useAuth();
@@ -175,7 +175,7 @@ export const Home: React.FC = () => {
             © All rights reserved Skillcy 2025
           </span>
           <span className="text-gray-600 dark:text-gray-400 flex items-center">
-            Made with by{' '}
+            Made by
             <a
               href="https://github.com/Kshitij83"
               target="_blank"
@@ -187,12 +187,11 @@ export const Home: React.FC = () => {
           </span>
         </div>
         <div className="flex flex-col items-end gap-2">
-          <a
-            href="mailto:ksh03082004@gmail.com"
-            className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
-          >
-            Support
-          </a>
+            <div style={{ fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+  <Mail style={{ fontSize: '14px' }} />
+  Support : ksh03082004@gmail.com
+</div>
+
           <a
             href="https://github.com/Kshitij83/skillcy"
             target="_blank"
