@@ -37,7 +37,8 @@ export const Home: React.FC = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <>
+    <div className="container mx-auto px-4 py-10">
       {/* Hero Section */}
       <div className="text-center mb-16">
         <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-pulse">
@@ -167,5 +168,41 @@ export const Home: React.FC = () => {
         </div>
       )}
     </div>
+    {/* Footer Block */}
+      <footer className="mt-2 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 pt-4 pb-4 px-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4 text-sm shadow-lg">
+        <div className="flex flex-col gap-2">
+          <span className="text-gray-600 dark:text-gray-400">
+            © All rights reserved Skillcy 2025
+          </span>
+          <span className="text-gray-600 dark:text-gray-400 flex items-center">
+            Made with by{' '}
+            <a
+              href="https://github.com/Kshitij83"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline font-medium ml-1"
+            >
+              Kshitij
+            </a>
+          </span>
+        </div>
+        <div className="flex flex-col items-end gap-2">
+          <a
+            href="mailto:ksh03082004@gmail.com"
+            className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+          >
+            Support
+          </a>
+          <a
+            href="https://github.com/Kshitij83/skillcy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+          >
+            Learn More
+          </a>
+        </div>
+      </footer>
+      </>
   );
 };
