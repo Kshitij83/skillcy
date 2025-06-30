@@ -16,6 +16,7 @@ import { Premium } from "@/pages/Premium";
 import { Profile } from "@/pages/Profile";
 import NotFound from "./pages/NotFound";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const App = () => (
       </ThemeProvider>
     </QueryClientProvider>
     <Analytics />
+    <SpeedInsights />
   </>
 );
 
